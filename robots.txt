@@ -1,0 +1,7 @@
+# robots.txt for docs.bullfrogsec.com
+# All bots welcome, including AI/LLM training crawlers
+
+User-agent: *
+Allow: /
+
+Sitemap: https://docs.bullfrogsec.com/sitemap.xml
