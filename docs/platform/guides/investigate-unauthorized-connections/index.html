@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="generator" content="Docusaurus v3.9.2">
 <title data-rh="true">Investigate unauthorized connections | Bullfrog</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://docs.bullfrogsec.com/img/docusaurus-social-card.jpg"><meta data-rh="true" name="twitter:image" content="https://docs.bullfrogsec.com/img/docusaurus-social-card.jpg"><meta data-rh="true" property="og:url" content="https://docs.bullfrogsec.com/docs/platform/guides/investigate-unauthorized-connections"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="Investigate unauthorized connections | Bullfrog"><meta data-rh="true" name="description" content="Review every destination your workflows reached that nothing allowed."><meta data-rh="true" property="og:description" content="Review every destination your workflows reached that nothing allowed."><link data-rh="true" rel="icon" href="/img/favicon.svg"><link data-rh="true" rel="canonical" href="https://docs.bullfrogsec.com/docs/platform/guides/investigate-unauthorized-connections"><link data-rh="true" rel="alternate" href="https://docs.bullfrogsec.com/docs/platform/guides/investigate-unauthorized-connections" hreflang="en"><link data-rh="true" rel="alternate" href="https://docs.bullfrogsec.com/docs/platform/guides/investigate-unauthorized-connections" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Investigate unauthorized connections","item":"https://docs.bullfrogsec.com/docs/platform/guides/investigate-unauthorized-connections"}]}</script><link rel="stylesheet" href="/assets/css/styles.4ecf78c4.css">
-<script src="/assets/js/runtime~main.fdcd9629.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.50d2f14f.js" defer="defer"></script>
 <script src="/assets/js/main.4026c1fd.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
@@ -28,6 +28,7 @@
 <li class="">How many times it occurred</li>
 </ul>
 <p><strong>Unauthorized</strong> means a job in audit mode reached it and nothing stopped it. <strong>Blocked</strong> means a job in block mode tried and was denied.</p>
+<p>Select <strong>View details</strong> on a card to expand it. The expanded card lists the IP addresses the domain resolved to and the five most recent workflow runs that reached it, each with a <strong>View run</strong> link straight to that run.</p>
 <h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="step-2-narrow-the-list">Step 2: Narrow the list<a href="#step-2-narrow-the-list" class="hash-link" aria-label="Direct link to Step 2: Narrow the list" title="Direct link to Step 2: Narrow the list" translate="no">​</a></h2>
 <p>Use the time range control to widen or tighten the window, up to the last 30 days.</p>
 <p>Use the search box to filter by domain or address, and the status filter to show only <strong>Blocked</strong> or only <strong>Unauthorized</strong>.</p>
@@ -42,11 +43,11 @@
 <h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="step-4-trace-a-destination-back-to-a-run">Step 4: Trace a destination back to a run<a href="#step-4-trace-a-destination-back-to-a-run" class="hash-link" aria-label="Direct link to Step 4: Trace a destination back to a run" title="Direct link to Step 4: Trace a destination back to a run" translate="no">​</a></h2>
 <p>The roll-up shows what was reached, not which job reached it. To find that:</p>
 <ol>
-<li class="">Note the first-seen and last-seen timestamps on the card.</li>
-<li class="">Select <strong>Workflow Runs</strong> and filter by repository and time range to the runs in that window.</li>
-<li class="">Open a run and read its connection table, which lists each connection with the job it came from.</li>
+<li class="">Select <strong>View details</strong> on the card, then select <strong>View run</strong> next to one of the runs listed under <strong>Seen in these workflows</strong>. If the run you need isn&#x27;t in that list of five, note the first-seen and last-seen timestamps instead, then select <strong>Workflow Runs</strong> and filter by repository and time range to the runs in that window.</li>
+<li class="">On the run&#x27;s page, read its connection table, which lists each connection with the job it came from.</li>
+<li class="">Select a connection row to expand its process details: the process name, executable path, command line, and, for a containerized job, the container.</li>
 </ol>
-<p>The job summary in GitHub for that same run carries the process name, executable path, and command line behind each connection, which is usually what identifies the step responsible.</p>
+<p>This is usually what identifies the step responsible. The job summary Bullfrog posts to that same run in GitHub carries the same details. See <a class="" href="/docs/github-action/guides/review-connections-in-a-job-summary">Review connections in a job summary</a>.</p>
 <h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="step-5-act-on-what-you-found">Step 5: Act on what you found<a href="#step-5-act-on-what-you-found" class="hash-link" aria-label="Direct link to Step 5: Act on what you found" title="Direct link to Step 5: Act on what you found" translate="no">​</a></h2>
 <p>Add the destinations you accepted to an allowlist, and re-check this page after the next few runs. A destination that stops appearing is one you&#x27;ve accounted for.</p>
 <h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="see-also">See also<a href="#see-also" class="hash-link" aria-label="Direct link to See also" title="Direct link to See also" translate="no">​</a></h2>
